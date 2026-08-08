@@ -5,50 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ahmad Gamal | Portfolio</title>
     <style>
-        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #f4f6f9; color: #333; margin: 0; padding: 0; line-height: 1.6; }
-        header { background: #1e293b; color: #fff; text-align: center; padding: 50px 20px; }
-        header h1 { margin: 0; font-size: 32px; }
-        header p { color: #94a3b8; font-size: 18px; margin-top: 10px; }
-        .container { max-width: 800px; margin: 30px auto; padding: 30px; background: #fff; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        h2 { color: #0284c7; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; margin-top: 40px; }
-        ul { padding-left: 20px; }
-        li { margin-bottom: 10px; }
-        .footer { text-align: center; padding: 20px; color: #64748b; font-size: 14px; }
+        :root { --primary: #2563eb; --dark: #1e293b; --light: #f8fafc; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--light); color: #334155; }
+        nav { background: var(--dark); color: white; padding: 2rem; text-align: center; }
+        .tabs { display: flex; justify-content: center; gap: 10px; background: white; padding: 10px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .tab-btn { padding: 10px 20px; border: none; cursor: pointer; background: none; font-weight: bold; border-radius: 5px; }
+        .tab-btn.active { background: var(--primary); color: white; }
+        .content { max-width: 900px; margin: 20px auto; padding: 20px; background: white; border-radius: 10px; min-height: 400px; }
+        .hidden { display: none; }
+        img { width: 100%; max-width: 300px; border-radius: 10px; margin-bottom: 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .card { border: 1px solid #e2e8f0; padding: 15px; border-radius: 8px; }
     </style>
 </head>
 <body>
-
-    <header>
+    <nav>
         <h1>Ahmad Gamal Ali Mansour</h1>
-        <p>Electronics and Communication Engineer | Network Infrastructure & Embedded Systems</p>
-    </header>
+        <p>Network Engineer & Embedded Software Specialist</p>
+    </nav>
 
-    <div class="container">
-        <h2>About Me</h2>
-        <p>A fresh graduate with a Bachelor of Science in Electronics and Communication Engineering. Passionate about network infrastructure, embedded systems development, and software automation.</p>
+    <div class="tabs">
+        <button class="tab-btn active" onclick="show('about')">About</button>
+        <button class="tab-btn" onclick="show('projects')">Projects</button>
+        <button class="tab-btn" onclick="show('experience')">Experience</button>
+    </div>
 
-        <h2>Education & Training</h2>
-        <ul>
-            <li><strong>Bachelor of Science in Electronics and Communication Engineering:</strong> Al-Azhar University, Cumulative Grade: Very Good (81%).</li>
-            <li><strong>NTI Trainee:</strong> Currently undergoing Core Data Network Infrastructure training at the National Telecommunication Institute (NTI).</li>
-        </ul>
+    <div id="about" class="content">
+        <h2>Professional Summary</h2>
+        <p>Results-driven Electronics and Communications Engineering graduate. Specializing in Embedded Systems and Computer Networks. Proficient in C/C++, ARM/AVR, RTOS, and CCNA-level networking (OSPF, BGP, Switching).</p>
+        <h3>Core Skills</h3>
+        <p><b>Embedded:</b> C, C++, Embedded C, ARM, AVR, FreeRTOS, Proteus.<br>
+        <b>Networks:</b> CCNA, Cisco Packet Tracer, Wireshark, VLANs, TCP/IP.</p>
+    </div>
 
+    <div id="projects" class="content hidden">
         <h2>Key Projects</h2>
-        <ul>
-            <li><strong>V2X Collision Avoidance System:</strong> Graduation project utilizing STM32 microcontrollers and FreeRTOS.</li>
-            <li><strong>Network Simulations:</strong> Hands-on experience with OSPF, HSRP, and routing protocols using Cisco Packet Tracer and Wireshark.</li>
-            <li><strong>Desktop Applications:</strong> Developed inventory management tools using Python and Tkinter.</li>
-        </ul>
-
-        <h2>Technical Skills</h2>
-        <p><strong>Networking:</strong> CCNA, OSPF, HSRP, Cisco Packet Tracer, Wireshark.<br>
-           <strong>Embedded Systems:</strong> C/C++, ATmega328, STM32, FreeRTOS.<br>
-           <strong>Software & Tools:</strong> Python, Tkinter, Linux (Fedora/Nobara).</p>
+        <div class="grid">
+            <div class="card"><h3>V2X Collision Avoidance</h3><p>Graduation project using STM32 and FreeRTOS for vehicular communication.</p></div>
+            <div class="card"><h3>Smart Home System</h3><p>Integrated automation using AVR, UART, and I2C.</p></div>
+            <div class="card"><h3>Office Network Design</h3><p>VLANs, Inter-VLAN routing, and DHCP simulation.</p></div>
+        </div>
     </div>
 
-    <div class="footer">
-        <p>© 2026 Ahmad Gamal Ali Mansour</p>
+    <div id="experience" class="content hidden">
+        <h2>Volunteering & Training</h2>
+        <p><b>AZEX - Head of Technical Support:</b> Led committees and supervised 30+ technical courses.</p>
+        <p><b>NTI - Network Trainee:</b> Intensive training in Core Data Network Infrastructure.</p>
     </div>
 
+    <script>
+        function show(id) {
+            document.querySelectorAll('.content').forEach(c => c.classList.add('hidden'));
+            document.getElementById(id).classList.remove('hidden');
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+    </script>
 </body>
 </html>
